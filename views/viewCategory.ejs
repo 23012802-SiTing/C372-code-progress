@@ -1,0 +1,31 @@
+<body> 
+  <%- include ('partials/navbar.ejs') %> 
+ 
+ 
+  <div class="container"> 
+    <br> 
+    <div class="text-center"> 
+      <h2>Category Details</h2> 
+    </div> 
+    <br> 
+    <% if (category) { %> <!-- Check if category data exists --> 
+      <div> 
+        <p><b>Category Name:</b><br> 
+          <%= category.categoryName %> 
+        </p> 
+        <p><b>Category Image:</b><br> 
+          <img src="../image/<%= category.categoryImage %>" width="20%"> 
+        </p> 
+        <p><b>Category Description:</b><br> 
+          <%= category.categoryDescription %> 
+        </p> 
+      </div> 
+      <% } else { %> 
+        <p>No Category found.</p> 
+        <% } %> 
+          <a href="/viewAllCategory">Back</a> 
+  </div> 
+ 
+</body> 
+ 
+</html>

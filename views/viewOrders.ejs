@@ -1,0 +1,73 @@
+<%- include ('partials/navbar.ejs') %>
+
+  <% if ( session.user && session.user.userRole==="admin" ) { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/orders">Orders</a>
+    </li>
+    <% } else{ %>
+      <li class="nav-item">
+        <a class="nav-link" href="/myOrders">Orders</a>
+      </li>
+      <% } %>
+
+      
+    <div class="container">
+      <div class="row fs-1 text-center">
+        <p>Orders</p>
+      </div>
+      <% if(msg){%>
+        <p><%=msg%></p>
+        <%}else{%>
+
+      <div class="row mb-5">
+        <!-- shopping cart -->
+        <div class="col-lg-12">
+
+          <table class="table table-hover small text-center">
+            <thead>
+              <tr>
+                <th>Bought By</th>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>SubTotal</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i < order_items.length; i++) { %>
+                <tr>
+                  <td><%= order_items[i].userName %> </td>
+                  <td>
+                      <%= order_items[i].snack %> <br>
+                        <img src="image/<%= order_items[i].image %>" width="30%"> <br>
+                        <%= order_items[i].description %>
+                    </td>
+                  <td>$<%= order_items[i].price %>
+                  </td>
+                  <td>
+                    <%=order_items[i].ordersnackQuantity%>
+                  </td>
+                  <td>$<%= order_items[i].price * order_items[i].ordersnackQuantity %>
+                  </td>
+                  <td>
+                    <% const orderDate=order_items[i].orderDate; 
+                      const year=orderDate.getFullYear(); 
+                      const month=String(orderDate.getMonth() + 1).padStart(2, '0' ); // Months are zero-indexed 
+                      const day=String(orderDate.getDate()).padStart(2, '0' ); 
+                      const formattedDate=`${year}-${month}-${day}`;
+                      %>
+                      <%= formattedDate %>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <% } %>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<style>
+
+        .change {
+            background-image: url('image/bg.png'); /* Add your image path here */
+            background-size: cover;
+            background-position: center;
+            height: 750px; /* Adjust height as needed */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            padding-top: 50px;
+            padding-bottom: 100px;
+            padding-left: 50px;
+            padding-right: 50px;
+            background-color: #f6f4f1;
+            border: 3px solid #5b5247;
+            border-radius: 10px;
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        h1 {
+            font-style: italic;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .context{
+            margin: 0 50px;
+            font-size: 20px;
+            font-style: normal;
+            border-radius: 10px;
+            color: #5b5247;
+        }
+
+        .details {
+            display: flex; /* Use flexbox */
+            justify-content: space-between; /* Space between details and button */
+            align-items: center; /* Center items vertically */
+            width: 90%; /* Full width of the container */
+        }
+
+        .btn.btn-feedback{
+            background-color: #c8c8c8;
+            border-radius: 10px;
+        }
+
+
+        .btn.btn-feedback:hover{
+            border-radius: 10px;
+            color: #5b5247;
+        }
+
+
+</style>
+
+<%- include ('partials/navbar.ejs') %>
+    
+    <div class="change">
+        <div class="container">
+            <h1 style="color:#5b4747;">CONTACT US!</h1><br>
+            <img class="img1" src="image/contact.png"><br><br>
+            <p class= "context"style="max-width: 600px; text-align: center;" >In love with these traditional snacks? feel free to drop us a review or comment for us to serve u better! 
+                Also, do contact us with the information provided if there are any enquiries!</p><br><br>
+                <div class="details">
+                    <p style="color: #5b5247;">Email: traditionals@gmail.com<br>
+                        Contact Number: 2316 7839</p>
+                    
+                    <a href ="/addFeedback" ><button type="submit" class="btn btn-feedback">feedback/comment</button></a>
+                    
+                </div>
+                <div>
+                    <% if (session.user && session.user.userRole === "admin") { %>
+                    <a href ="/feedback" ><button type="submit" class="btn btn-feedback">view feedback/comment</button></a>
+                    <% } %>
+                </div>
+        </div>
+        
+
+
+    </div>
+    
+
+</body>
+</html>

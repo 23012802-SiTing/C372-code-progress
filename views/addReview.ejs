@@ -1,0 +1,32 @@
+<%- include ('partials/navbar.ejs') %>
+    
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <h2>Add New Review for <%=snack.snackname%></h2>
+            <p><%=snack.description%></p>
+            <p><img src = "/image/<%= snack.image %>" width="20%"></p>
+            <p>Price: $<%=snack.price%></p>
+        </div>
+        <br>
+        <div class="text-center">
+            <form action="/addReview/<%=snack.snackId%>" method="POST" enctype="multipart/form-data">
+                <label for="reviewContent">Review:</label><br>
+                <textarea id="reviewContent" name="reviewContent" required></textarea> <br>
+                <label for="reviewRating">Rating:</label><br>
+                <select name="reviewRating" id="reviewRating" required >
+                  <% for (let i = 1; i <= 5; i++) { %>
+                    <option value="<%= i %>"><%= i %> star</option>
+                  <% } %>
+                </select>
+                <br><br>
+                <label for="reviewImage">Image:</label><br>
+                <input type="file" id="reviewImage" name="reviewImage" accept="image/*" required><br><br>
+                <!-- <label for="reviewedBy">Review By:</label><br>
+                <input type="text" id="reviewedBy" name="reviewedBy" value="<%=session.user.userName%>" required /> <br> -->
+                <button type="submit">Add Review</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<style>
+
+    .btn-shop:hover {
+        background-color: #ebcdcd;
+    }
+
+    .snack-description{
+      margin: 0 50px;
+      font-size: 20px;
+      font-style: normal;
+      border-radius: 10px;
+    }
+
+    .snack-size{
+      font-size: 20px;
+      font-style: normal;
+      background-color: white;
+      text-align: center; /* Centers the text */
+      margin: 0 100px; /* Centers the block horizontally */
+      width: 50%; /* Adjust width as needed */
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .snack-quantity{
+      font-size: 20px;
+      font-style: normal;
+      background-color: white;
+      text-align: center; /* Centers the text */
+      margin: 0 100px; /* Centers the block horizontally */
+      width: 50%; /* Adjust width as needed */
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .snack-price{
+      font-size: 20px;
+      font-style: normal;
+      background-color: white;
+      text-align: center; /* Centers the text */
+      margin: 0 100px; /* Centers the block horizontally */
+      width: 50%; /* Adjust width as needed */
+      padding: 10px;
+      border-radius: 10px;
+      
+    }
+
+    .size-title{
+      margin: 0 300px;
+      font-size: 20px;
+      font-style: normal;
+    }
+
+    .price-title{
+      margin: 0 300px;
+      font-size: 20px;
+      font-style: normal;
+    }
+
+    .quantity-title{
+      margin: 0 280px;
+      font-size: 20px;
+      font-style: normal;
+    }
+  </style>
+
+  <%- include('partials/navbar.ejs') %>  
+
+  <div class="container mt-4">
+    <a href="/snack" class="back-link"><-- All Products</a><br><br>
+    
+    <% if (snack) { %>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <img src="../image/<%= snack.image %>" class="img-fluid" alt="<%= snack.snackname %>"><br><br>
+          <h1 class="snack-title"><%= snack.snackname %></h1>
+        </div>
+
+        <div class="col-md-8" >
+          <div style="max-width: 600px; text-align: center;" >
+            <p class="snack-description"><%= snack.description %></p> <br>
+          </div><br>
+          <h4 class="size-title">Size:</h4><br>
+            <p class="snack-size"><%= snack.size %></p><br>
+<!-- 
+            <h4 class="quantity-title">Quantity:</h4><br>
+            <input type="number" name="cartsnackquantity" value="1" min="1" class="cartsnackquantity" ><br><br> -->
+            
+            <h4 class="price-title">Price: </h4><br>
+              <p class="snack-price" style="background-color: white;">$<%= snack.price %></p><br>
+            
+          <!-- <form action="/addToCart/<%=snack.snackId%>" method="POST">
+            <input type="hidden" name="snackId" value="<%= snack.snackId %>">
+            <button type="submit" class="btn btn-cart">Add to cart</button>
+          </form> -->
+          <form action="/addToCart/<%=snack.snackId%>" method="POST">
+            <input type="hidden" name="snackId" value="<%= snack.snackId %>">
+            <input type="number" name="cartsnackquantity" value="1" min="1" class="cartsnackquantity">
+            <button type="submit" class="btn btn-cart">Add to cart</button>
+        </form>
+        </div>
+        <p>
+          <a href="/addReview/<%= snack.snackId %>">Add Review</a><br>
+
+          <a href="/snack/<%= snack.snackId %>/reviews">View reviews</a><br>
+        </p>
+      
+      </div>
+    <% } else { %>
+      <p>No product found.</p>
+    <% } %>
+  </div>
+</body>
+</html>

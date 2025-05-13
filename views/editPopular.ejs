@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <title>Traditionals</title>
+        <style>
+            body {
+              background-color: #f6f4f1;
+            }
+            .container-fluid{
+              margin-top: 10px;
+              margin-bottom: 10px;
+            }
+            .navbar-brand{
+              font-size: 20px;
+              font-style: italic;
+              color: #5b5247;
+            }
+            .nav-link{
+              margin: 0 50px;
+              font-size: 15px;
+              font-style: italic;
+              color: #5b5247;
+            }
+        
+            .nav-link.active{
+              margin: 0 50px;
+              font-size: 15px;
+              font-style: italic;
+              border-radius: 10px;
+              background-color: #e3c699;
+            }
+        
+            .nav-link:hover{
+              background-color: #e3c699;
+              border-radius: 10px;
+              color: #5b5247;
+            }
+        
+            .btn-shop:hover {
+                background-color: #ebcdcd;
+            }
+            </style>
+        </head>
+        <body>
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Traditionals</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> SHOP
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="shopDropdown">
+                                <li><a class="dropdown-item" href="/popular">Popular snacks</a></li>
+                                <li><a class="dropdown-item" href="/snack">All Snack</a></li>
+                            </ul>
+                          </li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">CART</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/aboutus">ABOUT US</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
+                    </ul>
+                </div>
+            </div>
+          </nav><br><br>
+
+          <% 
+            let userDisplay="Guest"; 
+            if(session.user) 
+            { 
+                userDisplay=session.user.userName; 
+            } 
+            %>
+
+          <div class="container mt-3"> Hello <%=userDisplay%>!</div><br><br>
+
+      <div class="container">
+        <br>
+        <div class="text-center"><h2>Update Snack Details</h2></div>
+        <br>
+        <div class="text-center">
+          <% if (popular) { %> 
+            <form action="/editPopular/<%= popular.popularId %>" method="POST" enctype="multipart/form-data">
+                <label for="popularname">Popular snack Name:</label><br>
+                <input type="text" id="popularname" name="popularname" value="<%= popular.popularname %>"  required><br><br>
+
+                <label for="price">Price</label><br>
+                <input type="number" id="price" name="price" value="<%= popular.price %>" min="0" step="0.01" required><br><br>
+
+
+                <label for="description">Description:</label><br>
+                <input type="text" id="description" name="description" value="<%= popular.description %>" required><br><br>
+
+                <label for="size">Size:</label><br>
+                <input type="number" id="size" name="size" value="<%= popular.size %>" required><br><br>
+
+                <label for="quantity">Quantity:</label><br>
+                <input type="number" id="quantity" name="quantity" value="<%= popular.quantity %>" required><br><br>
+
+                <label for="image">Current Image:</label><br>
+                <input type="text" name="currentImage" value="<%= popular.image %>"> <br>
+                <img src = "/image/<%= popular.image %>" width="20%"><br><br>
+                
+                New Image:<br> <input type="file" id="image" name="image" accept="image/*" value=<%= popular.image %> ><br><br>
+
+                <button type="submit">Update Popular</button>
+            </form>
+          <% } else { %>
+              <p>No Popular found.</p>
+          <% } %>
+          <a href ="/popular">Back</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<style>
+  body {
+    background-color: #f6f4f1; /* Webpage background color */
+  }
+
+  table {
+    background-color: #f6f4f1; /* Set table background to beige */
+    width: 100%;
+    border-collapse: collapseseprate;
+    border-spacing: 10px;
+  }
+
+  td {
+    padding: 10px;
+    text-align: center;
+    background-color: #f6f4f1; /* Set table cell background to beige */
+  }
+
+  th{
+    padding: 0 50px;
+  }
+  
+
+
+</style>
+
+  <%- include ('partials/navbar.ejs') %>
+    <div class="container">
+      <div class="row fs-1 text-center">
+        <p>SHOPPING CART</p><br><br>
+      </div>
+      <% if(msg){%>
+        <p><%=msg%></p>
+        <%}else{%>
+
+      <div class="row mb-5">
+        <!-- shopping cart -->
+        <div class="col-lg-11">
+
+          <table class="text-center">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>SubTotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i < cart_snack.length; i++) { %>
+                <tr>
+                  <td><a href="/snack/<%=cart_snack[i].snackId%>">
+                      
+                        <img src="image/<%= cart_snack[i].image %>" width="200px"> <br>
+
+                        <td><%= cart_snack[i].snackname %></td>
+                    </a></td>
+                  <td>$<%= cart_snack[i].price %>
+                  </td>
+                  <td>
+                    <form action="/updateCartProduct/<%= cart_snack[i].snackId %>" method="post">
+                      <input type="number" id="cartsnackquantity" name="cartsnackquantity" value="<%= cart_snack[i].cartsnackquantity %>" min="1" max="999"><br><br>
+                     <input type="submit" value="Update"><br/>
+                    </form>
+
+                  </td>
+                  <td>$<%= cart_snack[i].price * cart_snack[i].cartsnackquantity %>
+                    <td><a class="delete" href="/removeFromCart/<%= cart_snack[i].snackId %>">Remove</a></td>
+                  </td>
+
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+        </div><br>
+        
+        <!-- Order summary -->
+        <div class="col-lg-11">
+          <div class="container ">
+            <div class="row  m-3 border-top border-bottom fw-bold">
+              <div class="col text-center fs-3">ORDER SUMMARY</div>
+            </div><!-- Order summary rows -->
+            <% for(let i=0; i < cart_snack.length; i++) { %>
+              <div class="row  m-3 border-bottom">
+                <div class="col fs-6">
+                  <p>
+                    <%= cart_snack[i].snackname %> X <%= cart_snack[i].cartsnackquantity %>
+                  </p>
+                </div>
+                <div class="col fs-6 text-end">
+                  <p>
+                    $<%= cart_snack[i].price * cart_snack[i].cartsnackquantity %>
+                  </p>
+                </div>
+              </div>
+              <% } %>
+                <div class="row  m-3 border-bottom fw-bold">
+                  <div class="col fs-6">
+                    <p>TOTAL</p>
+                  </div>
+                  <div class="col fs-6 text-end">
+                    <p>
+                      $<%=totalAmount%>
+                    </p>
+                  </div>
+                </div>
+                <!-- <form action="/generateNETSQR" method="POST">
+                  <input type="hidden" name="cartTotal" value="<%= totalAmount %>">
+                  <button type="submit">Pay with NETS</button>
+              </form> -->
+
+              <!-- paypal -->
+              <div class="row m-3 border-bottom fw-bold">
+                <div id="paypal-button-container"></div>
+                <% console.log(cart_snack)%>
+                <input type="hidden" id="cartProducts" value='<%-JSON.stringify(cart_snack)%>'>
+                <p id="result-message"></p>
+                <script src="https://sandbox.paypal.com/sdk/js?client-id=AWXccdfMjRbsrgsIT1jpByYDs-E04tm8XryQriJqrz2QKoi71pcMeU_wlkBpuxYNryRlucUGDhskeuOI&components=buttons&currency=SGD">
+                </script>
+                <script src="/js/paypal.js"> </script>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <% } %>
+    </div>
+</body>
+
+</html>

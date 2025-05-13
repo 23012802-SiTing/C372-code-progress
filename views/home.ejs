@@ -1,0 +1,60 @@
+<style>
+  .change {
+    background-image: url('image/bg.png'); /* Add your image path here */
+    background-size: cover;
+    background-position: center;
+    height: 750px; /* Adjust height as needed */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+  font-style: italic;
+  text-align: center;
+  font-size: 50px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.content {
+    padding: 50px;
+    text-align: center;
+}
+
+.btn-shop {
+    margin-top: 10px;
+    background-color: #ffffff;
+    color: #5b5247;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.btn-shop:hover {
+    background-color: #ebcdcd;
+}
+
+.category{
+  position: absolute;
+  right: 20px;
+  text-decoration: none;
+  color: #5b5247;
+  background-color: #af9d81;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+</style>
+
+<%- include ('partials/navbar.ejs') %>
+
+    <div class="change">
+      <h1>BEST <br>TRADITIONAL<br> SNACKS</h1>
+      <div class="content">
+        <a href="/popular" class="btn-shop">SHOP NOW!</a>
+      </div>
+    </div>
+</body>
+</html>
+

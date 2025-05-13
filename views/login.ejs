@@ -1,0 +1,63 @@
+       <%- include ('partials/navbar.ejs') %>
+
+    <!-- Login Form -->
+    <div class="container">
+        <h1 class="mt-3">Login</h1>
+        <% if (errors && errors.length > 0) { %>
+            <div class="alert alert-danger">
+                <% errors.forEach(function(error) { %>
+                    <p><%= error %></p>
+                <% }); %>
+            </div>
+        <% } %>
+        <% if (messages && messages.length > 0) { %>
+            <div class="alert alert-success">
+                <% messages.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
+        <form action="/login" method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="userEmail">Email:</label>
+                <input type="email" id="userEmail" name="userEmail" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="userPassword">Password:</label>
+                <input type="password" id="userPassword" name="userPassword" class="form-control" required>
+            </div>
+            <p style="text-align: center;">Have an account? <a href="/register">Register here</a></p>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <style>
+        
+            .btn-shop:hover {
+                background-color: #ebcdcd;
+            }
+        
+            .back{
+              color: black; 
+              text-decoration: none;
+              background-color: #af9d81;
+              padding: 5px 20px;
+              border-radius: 10px;
+            }
+        
+            .container {
+                text-align: center;
+                width: 100%; /* Full width */
+                max-width: 500px; /* Max width for the form */
+            }
+            .form-group {
+                margin-bottom: 50px; /* Space between form groups */
+            }
+            .form-control {
+                width: 500px; /* Full width */
+                height: 50px; /* Increase height for fatter input fields */
+                padding: 15px; /* Increase padding for a fuller look */
+                border-radius: 80px; /* Optional: round the corners */
+            }
+            </style>
+    </div>
+</html>

@@ -1,0 +1,25 @@
+<%- include ('partials/navbar.ejs') %>
+
+    <div class="container">
+        <br>
+        <a href ="/feedback"><button>Back</button></a>
+        <br>
+        <div class="text-center"><h2>Feedback/Comment</h2></div>
+        <br>
+        <div class="text-center">
+            <form action="/addFeedback" method="POST">
+                <label for="email">EMAIL:</label><br>
+                <input type="text" id="email" name="email" required><br><br>
+            
+                <label for="phone_number">PHONE NUMBER:</label><br>
+                <input type="text" id="phone_number" name="phone_number" required><br><br>
+            
+                <label for="feedback">COMMENTS:</label><br>
+                <input type="text" id="feedback" name="feedback" required><br><br>
+            
+                <button type="submit">Add Feedback</button>
+            </form>
+        </div>
+      </div>
+</body>
+</html>

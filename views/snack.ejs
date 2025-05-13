@@ -1,0 +1,61 @@
+<style>
+
+    .btn-shop:hover {
+        background-color: #ebcdcd;
+    }
+
+    .back{
+      color: black; 
+      text-decoration: none;
+      background-color: #af9d81;
+      padding: 5px 20px;
+      border-radius: 10px;
+    }
+</style>
+
+  <%- include ('partials/navbar.ejs') %>
+
+  <div class="container">
+    <a href ="/popular" ><button class="back">Back</button></a>
+    <div class="text-center">
+      <h2>ALL SNACKS!</h2>
+    </div>
+    <br><br>
+  
+    <div class="row justify-content-center"> <!-- Add justify-content-center for center alignment -->
+      <% for(let i = 0; i < snack.length; i++) { %>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <div class="card h-10 text-center" style="background-color: #f6f4f1; border: none ;" >
+            
+              <img src="/image/<%= snack[i].image %>" class="card-img-top" alt="<%= snack[i].snackname %>" style="width: auto; height: 300px; object-fit: contain;">
+            </a>
+            <div class="card-body">
+              <a href="/snack/<%= snack[i].snackId %>">
+                <h5 class="card-title"><%= snack[i].snackname %></h5> 
+              </a>
+              <p class="card-text">$<%= snack[i].price.toFixed(2) %></p>
+            </div>
+            <div class="card-footer" style="background-color: #f6f4f1; border: none ;">
+              <% if (session.user && session.user.userRole === "admin") { %>
+                <a href="/editSnack/<%= snack[i].snackId %>" class="btn btn-primary btn-sm">Edit</a>
+                <a href="/deleteSnack/<%= snack[i].snackId %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product (<%= snack[i].snackname %>)?')">Delete</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  
+  <br>
+    <div style="text-align: center;">
+      <% if (session.user && session.user.userRole === "admin") { %>
+          <a href="/addsnack">
+              <button class="btn btn-secondary" style="color: black;">Add snack</button>
+          </a>
+      <% } %>
+  </div>
+
+</body>
+
+</html>

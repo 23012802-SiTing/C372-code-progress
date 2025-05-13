@@ -1,0 +1,82 @@
+  <%- include ('partials/navbar.ejs') %>
+    <div class="container">
+      <div class="row fs-1 text-center">
+        <p>INVOICE</p>
+        <p>Thank you for your order!</p>
+        <p>Order ID: <%=orderId%></p>
+        <P>Transaction ID: <%=transactionId%></P>
+      </div>
+      <div class="row mb-5">
+        <!-- shopping cart -->
+        <div class="col-lg-8">
+
+          <table class="table table-hover small text-center">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>SubTotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i < cart_snack.length; i++) { %>
+                <tr>
+                  <td><a href="/snack/<%=cart_snack[i].snackId%>">
+                      <%= cart_snack[i].productName %> <br>
+                        <img src="images/<%= cart_snack[i].image %>" width="30%"> <br>
+                        <%= cart_snack[i].description %>
+                    </a></td>
+                  <td>$<%= cart_snack[i].price %>
+                  </td>
+                  <td>
+                    <%=cart_snack[i].cartsnackQuantity%>
+                   
+
+                  </td>
+                  <td>$<%= cart_snack[i].price * cart_snack[i].cartsnackQuantity %>
+                  </td>
+
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+        </div>
+        <!-- Order summary -->
+        <div class="col-lg-4">
+          <div class="container ">
+            <div class="row  m-3 border-top border-bottom fw-bold">
+              <div class="col text-center fs-3">ORDER SUMMARY</div>
+            </div><!-- Order summary rows -->
+            <% for(let i=0; i < cart_snack.length; i++) { %>
+              <div class="row  m-3 border-bottom">
+                <div class="col fs-6">
+                  <p>
+                    <%= cart_snack[i].snackname %> X <%= cart_snack[i].cartsnackQuantity %>
+                  </p>
+                </div>
+                <div class="col fs-6 text-end">
+                  <p>
+                    $<%= cart_snack[i].price * cart_snack[i].cartsnackQuantity %>
+                  </p>
+                </div>
+              </div>
+              <% } %>
+                <div class="row  m-3 border-bottom fw-bold">
+                  <div class="col fs-6">
+                    <p>TOTAL</p>
+                  </div>
+                  <div class="col fs-6 text-end">
+                    <p>
+                      $<%=totalAmount%>
+                    </p>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<style>
+
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the section horizontally */
+            text-align: center;
+            margin-top: 50px;
+            padding: 100px;
+
+        }
+        
+        .about-image {
+            width: 300px; /* Adjust to preferred size */
+            height: 300px; 
+            border-radius: 50%;
+            margin-right: 50px;
+        }
+        
+        .about-text p {
+            font-size: 18px;
+            color: #5b5247;
+        }
+        
+        .social-media{
+            margin: 20px;
+        }
+        
+        .about-image1{
+            width: 80px;
+            height: 80px;
+            margin-right: 50px;
+        }
+
+        .about-image2{
+            width: 80px;
+            height: 80px;
+        }
+
+</style>
+
+<%- include ('partials/navbar.ejs') %>
+    
+    <div class="container">
+        <div class="about-section">
+            <img src="/image/aboutus.jpg" alt="thank you" class="about-image">
+            <div class="about-text">
+                <p>
+                    At Traditionals, our MISSION is to bring you back to your childhood memories with your favourite snacks!
+                </p>
+                <p>
+                    We use high-quality ingredients to have the most authentic snacks. We want you to enjoy these snacks and remind you of your good old days!
+                </p>
+                <p>
+                    Do stay connected with us for any updates! 
+                    Feel free to follow our Instagram and Facebook page!
+                </p>
+                <div class="social-media">
+                    <a href="https://www.instagram.com/">
+                        <img src="/image/instagram.jpg" alt="instagram" class="about-image1">
+                    </a>
+                    <a href="https://www.facebook.com/">
+                        <img src="/image/facebook.png" alt="facebook" class="about-image2">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

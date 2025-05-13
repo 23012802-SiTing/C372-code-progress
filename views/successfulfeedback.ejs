@@ -1,0 +1,41 @@
+<style>
+        
+            .btn-shop:hover {
+                background-color: #ebcdcd;
+            }
+
+            .content{
+              text-align: center;
+              font-style: italic;
+            }
+
+            .feedback{
+              color: black; 
+              text-decoration: none;
+              background-color: #af9d81;
+              padding: 5px 20px;
+              border-radius: 10px;
+              border: none; 
+            }
+
+            button {
+              display: flex;
+              justify-content: flex-end; /* Aligns items to the right */
+              position: fixed; /* Fixes the position */
+              bottom: 500px; /* Distance from the bottom */
+              right: 50px; /* Distance from the right */
+          }
+            </style>
+
+            <%- include ('partials/navbar.ejs') %>
+          
+          <div class="content">
+            <h1>Successful submitted!</h1>
+            <h2>Thank you for your Feedback!</h2>
+          </div>
+
+          
+
+          <a href ="/feedback" ><button type="submit" class="feedback">view feedback/comment</button></a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+  <%- include ('partials/navbar.ejs') %>
+
+  <div class="container">
+    <br>
+    <div class="text-center">
+      <h2>Review Details</h2>
+    </div>
+    <br>
+    <% if (review) { %> <!-- Check if review data exists -->
+      <div>
+        <p><b>Product:</b><br>
+          <%= review.productName %>
+          <br><img src="../images/<%= review.productImage %>" width="20%">
+        </p>
+        <p><b>Review:</b><br>
+          Reviewed By:   <%= review.username %> <br>
+          <%= review.reviewContent %>
+        </p>
+        <p><b>Review Image:</b><br>
+          <img src="../images/<%= review.reviewImage %>" width="20%">
+        </p>
+
+      </div>
+      <% } else { %>
+        <p>No Review found.</p>
+        <% } %>
+          <a href="/">Back</a>
+  </div>
+
+</body>
+
+</html>

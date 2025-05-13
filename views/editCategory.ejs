@@ -1,0 +1,22 @@
+<%- include ('partials/navbar.ejs') %>
+<div class="container">
+        <br>
+        <div class="text-center"><h2>Edit Category</h2></div>
+        <br>
+        <div class="text-center">
+            <form action="/editCategory/<%=category.categoryId%>" method="POST" enctype="multipart/form-data">
+                <label for="categoryName">Category Name:</label><br>
+                <input type="text" id="categoryName" name="categoryName" value="<%=category.categoryName%>" required><br><br>
+
+                <label for="categoryImage">Current Image:</label><br>
+                <input type="hidden" name="currentImage" value = <%= category.categoryImage %>  >
+                <img src = "/images/<%= category.categoryImage %>" width="20%"><br><br>
+                
+                New Image:<br> <input type="file" id="categoryImage" name="categoryImage" accept="image/*" value=<%= category.categoryImage %> ><br><br>
+
+                <button type="submit">Update Category</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

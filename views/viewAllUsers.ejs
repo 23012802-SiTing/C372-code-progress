@@ -1,0 +1,45 @@
+<%- include ('partials/navbar.ejs') %>
+  <% if ( session.user && session.user.userRole==="admin" ) { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/orders">Orders</a>
+    </li>
+    <% } else{ %>
+      <li class="nav-item">
+        <a class="nav-link" href="/myOrders">Orders</a>
+      </li>
+      <% } %>
+
+      
+    <div class="container">
+      <div class="text-center"><h2>Users</h2></div>
+      <div class="text-left"><a href="/register">Add new user</a></div>
+      <br>
+      <table class="table table-hover small text-center">
+        <thead>
+            <tr>
+              <th width="50">Image</th>
+              <th width="100">Username</th>
+              <th width="100">Email</th> 
+              <th width="100">Role</th>              
+              <th width="50">Edit</th>
+              <th width="50">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% for(let i=0; i < users.length; i++) { %>
+            <tr>
+              <td><img src = "image/<%= users[i].UserImage %>" width="80%"></td>
+              <td><a href="/user/<%= users[i].userId %>" ><%= users[i].userName %></a></td>             
+              <td><%= users[i].userEmail %></td>
+              <td><%= users[i].userRole %></td>
+              <!-- Edit Link -->
+              <td><a href="/editUser/<%= users[i].userId %>">Edit</a></td>
+              <!-- Delete Link -->
+              <td><a href="/deleteUser/<%= users[i].userId %>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>

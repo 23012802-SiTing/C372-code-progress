@@ -1,0 +1,21 @@
+
+<%- include ('partials/navbar.ejs') %>
+
+    <div class="container">
+        <br>
+        <div class="text-center"><h2>Add New Category</h2></div>
+        <br>
+        <div class="text-center">
+            <form action="/addCategory" method="POST" enctype="multipart/form-data">
+                <label for="categoryname">Category Name:</label><br>
+                <input type="text" id="categoryname" name="categoryname" required><br><br>
+
+                <label for="categoryImage">Image:</label><br>
+                <input type="file" id="categoryImage" name="categoryImage" accept="image/*" required><br><br>
+
+                <button type="submit">Add Category</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
